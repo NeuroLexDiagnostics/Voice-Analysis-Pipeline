@@ -1,19 +1,19 @@
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (MSG) [2] in SMILExtract : openSMILE starting!
-[ 12.09.2018 - 14:16:22 ]
-    (MSG) [2] in SMILExtract : config file is: C:\Users\lazhang\DS_Pipeline\openSMILE-2.3.0\scripts\avec2013\avec2013_functionals.conf
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
+    (MSG) [2] in SMILExtract : config file is: C:\Users\lazhang\DS_Pipeline\Voice-Analysis-Pipeline\openSMILE-2.3.0\scripts\avec2013\avec2013_functionals.conf
+[ 12.09.2018 - 15:12:26 ]
     (MSG) [2] in cComponentManager : successfully registered 95 component types.
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (WARN) [1] in instance 'volmerge.reader' : Mismatch in input level buffer sizes (levelconf.nT). Level #1 has size 2 which is smaller than the max. input size of all input levels (200). This might cause the processing to hang unpredictably or cause incomplete processing.
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (WARN) [1] in instance 'smoNz.reader' : Mismatch in input level buffer sizes (levelconf.nT). Level #1 has size 100 which is smaller than the max. input size of all input levels (200). This might cause the processing to hang unpredictably or cause incomplete processing.
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (MSG) [2] in instance 'arffsink' : writing ARFF header (2268 features)...
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (MSG) [2] in cComponentManager : successfully finished createInstances
                                  (39 component instances were finalised, 1 data memories were finalised)
-[ 12.09.2018 - 14:16:22 ]
+[ 12.09.2018 - 15:12:26 ]
     (MSG) [2] in cComponentManager : starting single thread processing loop
-[ 12.09.2018 - 14:16:25 ]
-    (MSG) [2] in cComponentManager : Processing finished! System ran for 3027 ticks.
+[ 12.09.2018 - 15:12:29 ]
+    (MSG) [2] in cComponentManager : Processing finished! System ran for 3012 ticks.
