@@ -20,6 +20,7 @@ class Data_Viz(object):
         n,bins,patches = plt.hist(self.data[param],density=True, facecolor='g')
         plt.title(param)
         plt.show()
+
     def plot_param_vs_severity(self,param):
         severity = self.d_api.severity
         y = severity.astype('category').cat.codes
@@ -34,6 +35,7 @@ class Data_Viz(object):
         '''
         Plots and highlights severity level with legend, to analyze the spread of each type of data
         '''
+
     def plot_param_vs_phq(self,param):
         y = self.d_api.score.fillna(0)
         print(y.dtypes)
@@ -55,6 +57,7 @@ class Data_Viz(object):
         TODO: Get Index with NaN, Remove value
         Regression Plot (Scatter + Trend Line). Give r value too of feature_value vs. phq-9 score
         '''
+        
 def main():
     dv = Data_Viz()
     cols = dv.d_api.gemaps.columns.tolist()

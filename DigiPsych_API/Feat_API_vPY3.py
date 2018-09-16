@@ -14,15 +14,11 @@ Feat_API_vPY3 API will include:
 - GEMAPS
 - AVEC
 
-
-Generalizing the pipeline:
-- Get user to specify a folder of output.
-- Create consistent naming scheme for feature file(s)
+Other Feature(s) in progress:
 -
-- Establish Continuing Panel of Feature(s)
 '''
 class Feat_Extract(object):
-    def __init__(self,audioPath,audioFile,out_folder):
+    def __init__(self,audioPath,out_folder):
         '''
         - Audio File: Only the audio file name, no path name
         - Audio Path: Audio Path to folder.
@@ -33,7 +29,6 @@ class Feat_Extract(object):
                     | ExportAvec
                     | ExportGemaps
         '''
-        self.audioFile = audioFile
         self.audioPath = audioPath
         self.output = out_folder
         if self.output not in os.listdir():
@@ -41,20 +36,27 @@ class Feat_Extract(object):
             os.mkdir(self.output + '\\FeatureSets/')
             os.mkdir(self.output + '\\ExportAvec/')
             os.mkdir(self.output + '\\ExportGemaps/')
-
-    def get_gemaps(self):
+    def get_all_gemaps(self):
+        for a in os.listdir(audioPath):
+            if '.wav' in a:
+                self.get_gemaps(a)
+    def get_all_avec(self):
+        for a in os.listdir(audioPath):
+            if '.wav' in a:
+                self.get_avec(a)
+    def get_gemaps(self,audioFile):
         '''
         '''
-        wavFile = self.audioPath + self.audioFile
-        exportfile = self.output + '/' + 'ExportGemaps/' + self.audioFile[:-4] + '.arff'
+        wavFile = self.audioPath + audioFile
+        exportfile = self.output + '/' + 'ExportGemaps/' + audioFile[:-4] + '.arff'
         self.openSmileGemaps(wavFile,exportfile)
         data,labels = self.parseArff(exportfile)
         return data,labels
     def get_avec(self):
         '''
         '''
-        wavFile = self.audioPath + self.audioFile
-        exportfile = self.output + '/' +'ExportAvec/' + self.audioFile[:-4] + '.arff'
+        wavFile = self.audioPath + audioFile
+        exportfile = self.output + '/' +'ExportAvec/' + audioFile[:-4] + '.arff'
         self.openSmileAvec(wavFile,exportfile)
         data,labels = self.parseArff(exportfile)
         return data,labels
@@ -63,6 +65,11 @@ class Feat_Extract(object):
         '''
         Convert directory of arff files to "CSV"
         '''
+        #Check if directory has files
+        if len(os.listdir(fdir)) == 0:
+            print("You have not executed gemaps or avec yet to get features.")
+            sys.exit(1)
+
         with open(csvfile,'w',newline='') as outfile:
             writer = csv.writer(outfile)
             arff_files = os.listdir(fdir)
