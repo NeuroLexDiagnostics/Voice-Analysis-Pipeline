@@ -32,16 +32,16 @@ gemaps_features, gemaps_labels = osmile.getGemaps()
 
 ### To Do's:
 
-#####Extend the Feature_Extract_API.
+Extend the Feature_Extract_API.
 - Add NLP Features
 - Add Linguistic Features
 - Add Prosody Features
 - Other Features? ... TBD
 
-#####Document Feature_Extract_API modifications in Wiki.
+Document Feature_Extract_API modifications in Wiki.
 - Modify Wiki to update with new API information
 
-#####Ensure ease of use.
+Ensure ease of use.
 - The level of usage should be something along the lines of the code below.
 - The methods should export dataframes/dictionaries/sets that we can then combine or export
 

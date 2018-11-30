@@ -40,6 +40,7 @@ class OpenSmile():
         '''
         Gets Avec Features for provided audio file
         '''
+
         if '/' in audioFile:
             fi = audioFile.split('/')
             outFile = self.exportAvec + '/' + fi[-1][:-4] + '.arff'
@@ -49,6 +50,8 @@ class OpenSmile():
         else:
             outFile = self.exportAvec + '/' + audioFile[:-4] + '.arff'
         self.openSmileAvec(audioFile,outFile)
+        print(audioFile)
+        print(outFile)
         data,labels = self.parseArff(outFile)
         return data,labels
 

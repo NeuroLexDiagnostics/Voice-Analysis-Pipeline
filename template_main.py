@@ -1,4 +1,4 @@
-from DigiPsych_API.Feature_Extract_API import *
+from DigiPsych_API.Feature_Extract_API.opensmile import OpenSmile
 from DigiPsych_API.Analysis_API import *
 
 '''
@@ -9,7 +9,8 @@ the DigiPsych API
 # Enter Methods Here
 
 def main():
-    #Enter Code Here
-
+    osmile = OpenSmile()
+    data,labels = osmile.getGemaps('C:\\Users\\lazhang\\TIGER_AUDIO\\TIGER_15_T1_Speech_01.wav')
+    print(data)
 if __name__ == '__main__':
     main()
