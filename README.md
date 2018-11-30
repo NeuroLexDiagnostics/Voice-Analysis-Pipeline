@@ -36,6 +36,8 @@ Extend the Feature_Extract_API.
 - Add NLP Features
 - Add Linguistic Features
 - Add Prosody Features
+- Output dataframe with data and labels
+- Avec Gemaps folder deletion
 - Other Features? ... TBD
 
 Document Feature_Extract_API modifications in Wiki.
