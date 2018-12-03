@@ -1,34 +1,13 @@
 # DigiPsych Voice Analysis Pipeline
 
 ### How To Use:
-In order to use the voice analysis pipeline, you can call the following two
-imports:
+To use the DigiPsych Voice Analysis Pipeline, execute Voice_Feature_Wrapper.py
 
-```python
-from DigiPsych_API.Feature_Extract_API import *
-from DigiPsych_API.Analysis_API import *
+```
+python Voice_Feature_Wrapper.py
 ```
 
-From there you should be able to leverage the DigiPsych Pipeline.
-
-Currently the best supported method is to extract audio features (./Feature_Extract_API/opensmile.py).
-
-To use opensmile.py, complete the imports as stated above, and create an OpenSmile object.
-
-```python
-from DigiPsych_API.Feature_Extract_API import *
-from DigiPsych_API.Analysis_API import *
-
-osmile = OpenSmile()
-```
-
-To get AVEC and Gemaps Audio features, one would just need to make simple calls
-to the following methods.
-
-```python
-avec_features, avec_labels = osmile.getAvec()
-gemaps_features, gemaps_labels = osmile.getGemaps()
-```
+Provide a full path to the audio files. Once Pipeline finishes executing, check 'Output_Folder' and it's subdirectories for outputted CSV Files corresponding to sets of features that correspond to an audio files.
 
 ### To Do's:
 
