@@ -1,5 +1,12 @@
 # DigiPsych Voice Analysis Pipeline
 
+### Dependencies:
+
+Please Make sure you are executing the pipeline in a Python3 Environment and have the following modules/packages installed:
+
+pip install pandas scikit-learn
+
+
 ### How To Use:
 To use the DigiPsych Voice Analysis Pipeline, execute Voice_Feature_Wrapper.py
 

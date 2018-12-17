@@ -2,7 +2,7 @@ from DigiPsych_API.Feature_Extract_API.opensmile import OpenSmile
 import os
 import pandas as pd
 from datetime import datetime
-
+import os
 output_folder = './Output_Folder/'
 
 def osmile(path):
@@ -24,9 +24,8 @@ def osmile(path):
     avec_name = 'avec_features_' + date + '.csv'
     gemaps_name = 'gemaps_features_' + date + '.csv'
     gemapsDF.drop(['class'],axis=1)
-    avecDF.drop(['class'],axis=1)
     avecDF.to_csv(os.path.join(output_folder + 'Avec',avec_name))
-    gemapsDF.to_csv(os.path.join(output_folder + 'gemaps',gemaps_name))
+    gemapsDF.to_csv(os.path.join(output_folder + 'Gemaps',gemaps_name))
     print("OpenSmile Features Successfully Extracted.")
 
 def checkpath(path):
@@ -39,6 +38,8 @@ def checkpath(path):
 
 def feature_suite(path):
     osmile(path)
+
+
 
 def main():
     audio_path = None
