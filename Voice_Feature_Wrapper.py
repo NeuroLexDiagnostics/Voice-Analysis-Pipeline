@@ -42,6 +42,8 @@ def feature_suite(path):
 
 
 def main():
+    if os.path.exists(output_folder) == False:
+        os.mkdir(output_folder)
     audio_path = None
     while True:
         audio_path = input("Please provide a path to a folder of audio files: ")
