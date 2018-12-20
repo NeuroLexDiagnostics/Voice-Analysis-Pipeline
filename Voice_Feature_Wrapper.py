@@ -20,7 +20,13 @@ def osmile(path):
         gemaps_dict = dict(zip(gemaps_labels,gemaps_features))
         avecDF = avecDF.append(avec_dict,ignore_index=True)
         gemapsDF = gemapsDF.append(gemaps_dict,ignore_index=True)
-    date = datetime.now().strftime('%Y-%m-%d')
+    a_name = avecDF['name']
+    g_name = gemapsDF['name']
+    avecDF.drop(['name'],axis=1)
+    gemapsDF.drop(['name'],axis=1)
+    avecDF.insert(0,'AudioFile',a_name)
+    gemapsDF.insert(0,'AudioFile',g_name)
+    date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     avec_name = 'avec_features_' + date + '.csv'
     gemaps_name = 'gemaps_features_' + date + '.csv'
     gemapsDF.drop(['class'],axis=1)
