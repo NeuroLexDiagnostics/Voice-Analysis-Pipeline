@@ -3,7 +3,7 @@ import os
 import sys
 import csv
 import shutil
-import tempfile
+
 
 '''
 OpenSmile API. Enables users to leverage capabilities provided by opensmile toolkit.
@@ -21,7 +21,8 @@ class OpenSmile():
         '''
         Initialize temp folders to enable saving of Gemaps and Avec Data
         '''
-        self.exportFolder = tempfile.gettempdir()
+        self.exportFolder = './ExportTemp/'
+        os.makedirs(self.exportFolder)
         #Stores GEMAPS ARFF Files
         self.exportGemaps = os.path.join(self.exportFolder, 'Gemaps')
         os.makedirs(self.exportGemaps)
@@ -33,6 +34,7 @@ class OpenSmile():
         '''
         Destructor removes Temp Folders for GeMaps + Avec
         '''
+        shutil.rmtree(self.exportFolder)
         shutil.rmtree(self.exportGemaps)
         shutil.rmtree(self.exportAvec)
 
