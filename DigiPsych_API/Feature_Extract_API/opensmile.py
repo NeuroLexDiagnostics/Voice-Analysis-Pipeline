@@ -42,12 +42,11 @@ class OpenSmile():
         '''
         Gets Avec Features for provided audio file
         '''
-
-        if '/' in audioFile:
-            fi = audioFile.split('/')
-            outFile = self.exportAvec + '/' + fi[-1][:-4] + '.arff'
-        elif '\\' in audioFile:
+        if '\\' in audioFile:
             fi = audioFile.split('\\')
+            outFile = self.exportAvec + '/' + fi[-1][:-4] + '.arff'
+        elif '/' in audioFile:
+            fi = audioFile.split('/')
             outFile = self.exportAvec + '/' + fi[-1][:-4] + '.arff'
         else:
             outFile = self.exportAvec + '/' + audioFile[:-4] + '.arff'
@@ -61,11 +60,11 @@ class OpenSmile():
         '''
         Gets Gemaps Features for provided audio file
         '''
-        if '/' in audioFile:
-            fi = audioFile.split('/')
-            outFile = self.exportGemaps + '/' + fi[-1][:-4] + '.arff'
-        elif '\\' in audioFile:
+        if '\\' in audioFile:
             fi = audioFile.split('\\')
+            outFile = self.exportGemaps + '/' + fi[-1][:-4] + '.arff'
+        elif '/' in audioFile:
+            fi = audioFile.split('/')
             outFile = self.exportGemaps + '/' + fi[-1][:-4] + '.arff'
         else:
             outFile = self.exportGemaps + '/' + audioFile[:-4] + '.arff'
