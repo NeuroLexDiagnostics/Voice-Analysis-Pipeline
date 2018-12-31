@@ -1,5 +1,22 @@
 # DigiPsych Voice Analysis Pipeline
 
+### Features Provided and Background Information:
+#####Gemaps:
+Gemaps Features are explained at the following link:
+https://sail.usc.edu/publications/files/eyben-preprinttaffc-2015.pdf
+
+#####Avec:
+Avec Features are explained at the following link:
+https://ibug.doc.ic.ac.uk/media/uploads/documents/avec2013.pdf
+
+#####NLTK:
+NLTK Features and implementation details explained on their documentation link:
+https://www.nltk.org/api/nltk.html
+
+#####SPACY:
+Spacy Features and implementation details explained on their documentation link:
+https://spacy.io/api/
+
 ### Dependencies:
 
 Please Make sure you are executing the pipeline in a Python3 Environment and have the following modules/packages installed:
@@ -15,6 +32,7 @@ python Voice_Feature_Wrapper.py
 ```
 
 Provide a full path to the audio files. Once Pipeline finishes executing, check 'Output_Folder' and it's subdirectories for outputted CSV Files corresponding to sets of features that correspond to an audio files.
+
 
 ### To Do's:
 

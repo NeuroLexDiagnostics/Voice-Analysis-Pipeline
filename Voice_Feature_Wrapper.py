@@ -2,7 +2,7 @@ from DigiPsych_API.Feature_Extract_API.opensmile import OpenSmile
 import os
 import pandas as pd
 from datetime import datetime
-import os
+
 output_folder = './Output_Folder/'
 
 def osmile(path):
@@ -14,6 +14,8 @@ def osmile(path):
     if 'Gemaps' not in os.listdir(output_folder):
         os.mkdir(output_folder + 'Gemaps')
     for audioFile in os.listdir(path):
+        if audioFile == '.DS_Store':
+            continue
         avec_features, avec_labels = osm.getAvec(os.path.join(path,audioFile))
         gemaps_features, gemaps_labels = osm.getGemaps(os.path.join(path,audioFile))
         avec_dict = dict(zip(avec_labels,avec_features))
