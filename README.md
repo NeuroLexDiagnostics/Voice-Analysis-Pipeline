@@ -1,6 +1,17 @@
 # DigiPsych Voice Analysis Pipeline
 
+In order to utilize the Voice Analysis Pipeline, please make sure you are in a
+Python3 Environment.
+
+Please make sure to have the following dependencies installed:
+- nltk
+- spacy
+- numpy
+- pandas
+- textblob
+
 ### Features Provided and Background Information:
+
 ##### Gemaps:
 Gemaps Features are explained at the following link:
 https://sail.usc.edu/publications/files/eyben-preprinttaffc-2015.pdf
@@ -64,3 +75,11 @@ python Language_Feature_Wrapper.py
 - Feature Selection Implementation -- Sherry
     - AutoML Capability
     - MRMR
+- Implement Semantic Coherence: https://github.com/facuzeta/coherence
+
+### Credits:
+- audEERING for OpenSmile Capability: https://www.audeering.com/
+- Neurolex VoiceBook: https://www.neurolex.ai/voicebook/
+    - https://github.com/jim-schwoebel/voicebook
+- Semantic Coherence:
+    - https://www.nature.com/articles/npjschz201530.pdf
