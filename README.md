@@ -1,19 +1,19 @@
 # DigiPsych Voice Analysis Pipeline
 
 ### Features Provided and Background Information:
-#####Gemaps:
+##### Gemaps:
 Gemaps Features are explained at the following link:
 https://sail.usc.edu/publications/files/eyben-preprinttaffc-2015.pdf
 
-#####Avec:
+##### Avec:
 Avec Features are explained at the following link:
 https://ibug.doc.ic.ac.uk/media/uploads/documents/avec2013.pdf
 
-#####NLTK:
+##### NLTK:
 NLTK Features and implementation details explained on their documentation link:
 https://www.nltk.org/api/nltk.html
 
-#####SPACY:
+##### SPACY:
 Spacy Features and implementation details explained on their documentation link:
 https://spacy.io/api/
 
@@ -26,14 +26,14 @@ pip install pandas scikit-learn
 
 ### How To Use:
 
-#####Voice Feature Wrapper:
+##### Voice Feature Wrapper:
 ```
 python Voice_Feature_Wrapper.py
 ```
 - Provides AVEC2013 Features
 - Provides GeMAPS Features
 
-#####Language Feature Wrapper:
+##### Language Feature Wrapper:
 ```
 python Language_Feature_Wrapper.py
 ```
