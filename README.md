@@ -25,41 +25,42 @@ pip install pandas scikit-learn
 
 
 ### How To Use:
-To use the DigiPsych Voice Analysis Pipeline, execute Voice_Feature_Wrapper.py
 
+#####Voice Feature Wrapper:
 ```
 python Voice_Feature_Wrapper.py
 ```
+- Provides AVEC2013 Features
+- Provides GeMAPS Features
 
-Provide a full path to the audio files. Once Pipeline finishes executing, check 'Output_Folder' and it's subdirectories for outputted CSV Files corresponding to sets of features that correspond to an audio files.
-
-
-### To Do's:
-
-Extend the Feature_Extract_API.
-- Add NLP Features
-- Add Linguistic Features
-- Add Prosody Features
-- Output dataframe with data and labels
-- Avec Gemaps folder deletion
-- Other Features? ... TBD
-
-Document Feature_Extract_API modifications in Wiki.
-- Modify Wiki to update with new API information
-
-Ensure ease of use.
-- The level of usage should be something along the lines of the code below.
-- The methods should export dataframes/dictionaries/sets that we can then combine or export
-
-```python
-osmile = OpenSmile()
-ling = Linguistic()
-pros = Prosody()
-for fi in os.listdir(audioPath):
-  osmile.method1(fi)
-  osmile.method2(fi)
-  ling.method1(fi)
-  ling.method2(fi)
-  ling.method3(fi)
-  pros.method1(fi)
+#####Language Feature Wrapper:
 ```
+python Language_Feature_Wrapper.py
+```
+- Provides SPACY Features
+- Provides NLTK Features
+
+### Pipeline Backlog:
+- Implement Librosa Spectral Features -- Ali
+- Implement Prosodic:Voice Activity Detection Features -- Abbad
+    - 5.1 Response time
+    - 5.2 Response length
+    - 5.3 Silence ratio
+    - 5.4 Silence to utt. ratio
+    - 5.5 Long silence ratio
+    - 5.6 Avg. silence count
+    - 5.7 Silence rate
+    - 5.8 Cont. speech rate
+    - 5.9 Avg. cont. word count
+- Implement Linguistic: Complexity Features
+    - 4.1 Standardized word entropy
+    - 4.2 Suffix ratio
+    - 4.3 Number ratio
+    - 4.4 Brunet’s index
+    - 4.5 Honore’s statistic
+    - 4.6 Type-token ratio
+- Implement Command Line Usage -- Larry
+- Configure "__init__.py" to 'enable' -- Abbad
+- Feature Selection Implementation -- Sherry
+    - AutoML Capability
+    - MRMR
