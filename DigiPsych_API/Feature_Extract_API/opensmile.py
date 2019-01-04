@@ -35,8 +35,7 @@ class OpenSmile():
         Destructor removes Temp Folders for GeMaps + Avec
         '''
         shutil.rmtree(self.exportFolder)
-        shutil.rmtree(self.exportGemaps)
-        shutil.rmtree(self.exportAvec)
+
 
     def getAvec(self,audioFile):
         '''
@@ -50,7 +49,10 @@ class OpenSmile():
             outFile = self.exportAvec + '/' + fi[-1][:-4] + '.arff'
         else:
             outFile = self.exportAvec + '/' + audioFile[:-4] + '.arff'
-        self.openSmileAvec(audioFile,outFile)
+        if sys.platform == "win32":
+            self.openSmileAvec(audioFile, outFile)
+        else:
+            self.openSmileAvecMAC(audioFile, outFile)
         print(audioFile)
         print(outFile)
         data,labels = self.parseArff(outFile)
@@ -68,7 +70,10 @@ class OpenSmile():
             outFile = self.exportGemaps + '/' + fi[-1][:-4] + '.arff'
         else:
             outFile = self.exportGemaps + '/' + audioFile[:-4] + '.arff'
-        self.openSmileGemaps(audioFile,outFile)
+        if sys.platform == "win32":
+            self.openSmileGemaps(audioFile, outFile)
+        else:
+            self.openSmileGemapsMAC(audioFile, outFile)
         data,labels = self.parseArff(outFile)
         return data,labels
 
@@ -80,6 +85,12 @@ class OpenSmile():
         configAddr = os.getcwd() + '\\opensmile-2.3.0\\config\\gemaps\\eGeMAPSv01a.conf'
         os.system(OpenSmile+ ' -C ' + configAddr+ ' ' + ' -I' + ' ' + wavFile + ' -O' + ' ' + outFile)
 
+    def openSmileGemapsMAC(self, wavFile, outFile):
+        OpenSmile = os.getcwd() + '/opensmile-master/SMILExtract'
+        print(OpenSmile)
+        configAddr = os.getcwd() + '/opensmile-master/config/gemaps/eGeMAPSv01a.conf'
+        os.system(OpenSmile + ' -C ' + configAddr + ' ' + ' -I' + ' ' + wavFile + ' -O' + ' ' + outFile)
+
     def openSmileAvec(self,wavFile,outFile):
         '''
         Enables usage of Opensmile Avec Capability
@@ -87,6 +98,13 @@ class OpenSmile():
         OpenSmile = os.getcwd() + '\\openSMILE-2.3.0\\bin\Win32\\SMILExtract_Release.exe' #Enter the location of your openSMILE download
         configAddr = os.getcwd() + '\\openSMILE-2.3.0\\scripts\\avec2013\\avec2013_functionals.conf'
         os.system(OpenSmile + ' -C ' + configAddr + ' ' + ' -I' + ' ' + wavFile + ' -O' + ' ' + outFile)
+
+    def openSmileAvecMAC(self, wavFile, outFile):
+        OpenSmile = os.getcwd() + '/opensmile-master/SMILExtract'  # Enter the location of your openSMILE download
+        print(OpenSmile)
+        configAddr = os.getcwd() + '/opensmile-master/scripts/avec2013/avec2013_functionals.conf'
+        os.system(OpenSmile + ' -C ' + configAddr + ' ' + ' -I' + ' ' + wavFile + ' -O' + ' ' + outFile)
+
 
     def parseArff(self,arff_file):
         '''

@@ -40,6 +40,8 @@ def checkpath(path):
     files = os.listdir(path)
     for fi in files:
         #Checks if file is of wav
+        if fi == '.DS_Store':
+            continue
         if '.wav' not in fi:
             return False
     return True
