@@ -127,16 +127,16 @@ def visualPrompt(x_standard, y):
             break
 
 # prompt for model evaluation
-def evalModelPrompt(x_train, y_train, x_standard, y, classifier, name):
+def evalModelPrompt(x_train, x_test, y_train, y_test, x_standard, y, classifier, name):
     print("Find the best number of features using " + name + "... ")
-    selected_features = feature_selection.getBestK(x_train, y_train, classifier, name)
+    selected_features = feature_selection.getBestK(x_train, x_test, y_train, y_test, classifier, name)
         
     title = "Learning Curves with " + name + " (use selected features)"
     x_selected = x_standard[list(selected_features)]
     x_train_selected = x_train[list(selected_features)]
         
     classifier.fit(x_train_selected, y_train)
-    evaluate_model.plot_learning_curve(classifier, title, x_selected, y, cv=10)
+    evaluate_model.plot_learning_curve(classifier, title, x_selected, y, cv=5)
 
 # prompt for univariance feature selection
 def uniPrompt(x_train, y_train, x_standard, y):
@@ -159,7 +159,7 @@ def uniPrompt(x_train, y_train, x_standard, y):
         
                 logreg = LogisticRegression(C=1)
                 logreg.fit(x_train_selected, y_train)    
-                evaluate_model.plot_learning_curve(logreg, title, x_selected, y, cv=10) 
+                evaluate_model.plot_learning_curve(logreg, title, x_selected, y, cv=5) 
                 
                 break
             else:
@@ -178,19 +178,19 @@ def RFEPrompt(x_train, y_train, x_standard, y, classifier, name):
         x_train_selected = x_train[list(result)]
         
         classifier.fit(x_train_selected, y_train)    
-        evaluate_model.plot_learning_curve(classifier, title, x_selected, y, cv=10)       
+        evaluate_model.plot_learning_curve(classifier, title, x_selected, y, cv=5)       
 
 # prompt for select from model feature selection
-def lassoPrompt(x_train, y_train, x_standard, y, classifier, name):
+def modelPrompt(x_train, y_train, x_standard, y, classifier, name):
     while True:
-        value = input("Please choose the number of features to select: ")
+        value = input("Please choose the maximum number of features to select: ")
         try:
             k_value = int(value)
         except ValueError:
             print("The input you entered is not an integer. Please try again.")
         else:
             if k_value > 0:
-                result = feature_selection.lassoFeatSelect(x_train, y_train, classifier, k_value)
+                result = feature_selection.modelFeatSelect(x_train, y_train, classifier, k_value)
                 print(result)
                 if not result.empty:
                     features = list(result['Feature'])
@@ -200,7 +200,7 @@ def lassoPrompt(x_train, y_train, x_standard, y, classifier, name):
             
                     logreg = LogisticRegression(C=1)
                     logreg.fit(x_train_selected, y_train)    
-                    evaluate_model.plot_learning_curve(logreg, title, x_selected, y, cv=10) 
+                    evaluate_model.plot_learning_curve(logreg, title, x_selected, y, cv=5) 
                 
                 break
             else:
@@ -263,20 +263,20 @@ def main():
         
         # plot learning curve of current classifier
         title = "Learning Curves (" + name1 + ")"
-        evaluate_model.plot_learning_curve(classifier1, title, x_standard, y, cv=10)    
+        evaluate_model.plot_learning_curve(classifier1, title, x_standard, y, cv=5)    
         
         title = "Learning Curves (" + name2 + ")"
-        evaluate_model.plot_learning_curve(classifier2, title, x_standard, y, cv=10)    
+        evaluate_model.plot_learning_curve(classifier2, title, x_standard, y, cv=5)    
         
         answer = input("Do you want to find the best number of feature using " + name1 + "? (y/n) ")
         if answer == 'y':
-            evalModelPrompt(x_train, y_train, x_standard, y, classifier1, name1)
+            evalModelPrompt(x_train, x_test, y_train, y_test, x_standard, y, classifier1, name1)
         else:
             print("Skip for " + name1 + ".") 
                 
         answer = input("Do you want to find the best number of feature using " + name2 + "? (y/n) ")
         if answer == 'y':
-            evalModelPrompt(x_train, y_train, x_standard, y, classifier2, name2)
+            evalModelPrompt(x_train, x_test, y_train, y_test, x_standard, y, classifier2, name2)
         else:
             print("Skip for " + name2 + ".")
          
@@ -294,13 +294,13 @@ def main():
                 break
             elif method == 'lasso':
                 print("Using lasso")
-                lassoPrompt(x_train, y_train, x_standard, y, LassoCV(cv=5), 'Lasso')
+                modelPrompt(x_train, y_train, x_standard, y, LassoCV(cv=5), 'Lasso')
                 break
             elif method == 'optimal_classifier':
                 print("Using " + name1)
-                lassoPrompt(x_train, y_train, x_standard, y, classifier1, name1)
+                modelPrompt(x_train, y_train, x_standard, y, classifier1, name1)
                 print("Using " + name2)
-                lassoPrompt(x_train, y_train, x_standard, y, classifier2, name2)
+                modelPrompt(x_train, y_train, x_standard, y, classifier2, name2)
                 break
             else:
                 print("The method you provide is not an option. Please choose among RFE, and univariance. ")

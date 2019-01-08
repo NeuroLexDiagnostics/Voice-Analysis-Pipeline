@@ -50,7 +50,7 @@ def pcaPlot(df):
     
 #     print(explained_var)
     # return number of components with explained variance >= 90%
-    return bisect.bisect_left(explained_var, 0.9) + 1
+    return bisect.bisect_left(explained_var, 0.9)
 
 # find best classifier by score
 def optimalClassifier(x_train, x_test, y_train, y_test):
@@ -98,33 +98,36 @@ def optimalClassifier(x_train, x_test, y_train, y_test):
     return classifier1, name1, classifier2, name2
    
 # get the best number of features
-def getBestK(x, y, classifier, name):
-    classifier.fit(x, y)
-    scores = cross_val_score(classifier, x, y, cv=5)  
+def getBestK(x_train, x_test, y_train, y_test, classifier, name):
+    classifier.fit(x_train, y_train)
+    scores = cross_val_score(classifier, x_test, y_test, cv=5)  
     highest_score = np.mean(scores)
     std = np.std(scores)
-    k_value = len(x.columns)# total number of features
-    selected_features = list(x.head())
+    k_value = len(x_train.columns)# total number of features
+    selected_features = list(x_train.head())
     
     means = []
     stds = []
     
     # get feature subset of all size
     # update best number of features 
-    for i in range(1, len(x.columns)+1):
+    for i in range(1, len(x_train.columns)+1):
         print("current number of features: " + str(i))
         select = SelectKBest(k=i)
-        select.fit(x, y)
-        x_selected = select.transform(x)
+        select.fit(x_train, y_train)
+        x_train_selected = select.transform(x_train)
+                   
+        cols = list(x_train.columns[select.get_support(indices=True)])
+        x_test_selected = x_test[cols]
         
-        classifier.fit(x_selected, y)
-        scores = cross_val_score(classifier, x_selected, y, cv=5)
+        classifier.fit(x_train_selected, y_train)
+        scores = cross_val_score(classifier, x_test_selected, y_test, cv=5)
    
         if np.mean(scores) > highest_score or (np.mean(scores) == highest_score and np.std(scores) < std):
             highest_score = np.mean(scores)
             std = np.std(scores)
             k_value = i
-            selected_features = list(x.columns[select.get_support(indices=True)])
+            selected_features = cols
         
         means.append(np.mean(scores))
         stds.append(np.std(scores))
@@ -132,7 +135,7 @@ def getBestK(x, y, classifier, name):
     print("Number of features: " + str(k_value) + ", accuracy score " + str(highest_score))
     print("The selected features are: \n" + str(pd.DataFrame({'Feature':selected_features})))
     
-    x_axis = np.array(range(1, len(x.columns)+1))
+    x_axis = np.array(range(1, len(x_train.columns)+1))
     means = np.array(means)
     stds = np.array(stds)
     
@@ -195,7 +198,8 @@ def RFEFeatSelect(x, y, classifier):
         print(sys.exc_info())
         return pd.DataFrame(columns=['Empty'])
 
-def lassoFeatSelect(x, y, classifier, k_value):
+# select from model using classifier
+def modelFeatSelect(x, y, classifier, k_value):
     try:
         sfm = SelectFromModel(classifier, threshold=0.1)
         sfm.fit(x, y)
