@@ -46,6 +46,7 @@ Begin heap map plot...
 Would you like to (continue) visualize your data? (y/n) n
 Data visualization is skipped. 
 ```
+![alt_text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/visualization.png)
 
 ### Principle Component Analysis:
 ```
@@ -53,6 +54,7 @@ Would you like to perform principle component analysis? (y/n) y
 Begin PCA... 
 Suggested number of components by PCA with explained variance >= 0.9 is: 3
 ```
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/pca.png)
 
 ### Test Classifier:
 ```
@@ -95,6 +97,7 @@ The selected features are:
 Do you want to find the best number of feature using Random_Forest? (y/n) n
 Skip for Random_Forest.
 ```
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/classifier.png)
 
 ### Feature Selection
 1. univariance feature selection (univariance)
@@ -119,6 +122,7 @@ Number of Features: 3
 6  F0semitoneFrom27.5Hz_sma3nz_percentile80.0  1.185713
 End of Operation.
 ```
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/uni.png)
 
 optimal_classifier (k neareast neighbors - will be skipped, random forest)
 ```
@@ -137,6 +141,6 @@ Number of Features: 5
 1  F0semitoneFrom27.5Hz_sma3nz_pctlrange0-2
 End of Operation.
 ```
-
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/optimal.png)
 
 
