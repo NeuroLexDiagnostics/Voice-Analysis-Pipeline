@@ -170,12 +170,12 @@ def RFEPrompt(x_train, y_train, x_standard, y, classifier, name):
     print("Starting RFE: ")
     
     result = feature_selection.RFEFeatSelect(x_train, y_train, classifier)
-    if result != None:
-        print(pd.DataFrame({'Feature':result}))
-        
+    print(result) 
+    if not result.empty:
+        features = list(result['Feature'])
         title = "Learning Curves with " + name + " (use current feature subset)"
-        x_selected = x_standard[list(result)]
-        x_train_selected = x_train[list(result)]
+        x_selected = x_standard[features]
+        x_train_selected = x_train[features]
         
         classifier.fit(x_train_selected, y_train)    
         evaluate_model.plot_learning_curve(classifier, title, x_selected, y, cv=5)       
