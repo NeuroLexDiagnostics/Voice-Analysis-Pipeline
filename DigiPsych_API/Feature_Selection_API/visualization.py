@@ -25,7 +25,6 @@ def pairGrid(df, features):
             return 
     
     sns.set(style="white")
-    plt.rcParams["axes.labelsize"] = 7
     partial = df.loc[:,features]
     g = sns.PairGrid(partial, diag_sharey=False)
     g.map_lower(sns.kdeplot, cmap="Blues_d")
