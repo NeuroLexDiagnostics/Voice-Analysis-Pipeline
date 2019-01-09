@@ -22,8 +22,7 @@ def pairGrid(df, features):
     for feature in features:
         if feature not in df.head():
             print("At least one of the features doesn't exist in the table. ")
-            return 
-    
+            return     
     sns.set(style="white")
     partial = df.loc[:,features]
     g = sns.PairGrid(partial, diag_sharey=False)
