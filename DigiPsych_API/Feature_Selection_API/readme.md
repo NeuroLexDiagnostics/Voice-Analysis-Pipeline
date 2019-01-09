@@ -32,6 +32,8 @@ Here is the mapping according to the encoding you provide:
 ```
 
 ### Data Visualization:
+
+heat map (limitation: with large dataset, only plot first 20 features)
 ```
 Non-numeric columns and columns with missing values removed.
 Data Normalized (z-score).
@@ -43,10 +45,24 @@ Here is a list of method to choose:
 4. Heat Map of Correlation Between Every Pair of Features
 Please choose a method by number 1 - 4: 4
 Begin heap map plot... 
+```
+![alt_text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/visualization.png)
+
+correlation plot
+```
+Would you like to (continue) visualize your data? (y/n) y
+Here is a list of method to choose: 
+1. Correlation Plot Between Two Features
+2. Pair-wise Grid Plot Among 3+ Features (no more than 6)
+3. Violin Plot Between Features and the Target Class
+4. Heat Map of Correlation Between Every Pair of Features
+Please choose a method by number 1 - 4: 1
+Please provide 2 features(separated by space): F0semitoneFrom27.5Hz_sma3nz_amean F0semitoneFrom27.5Hz_sma3nz_meanFallingSlope 
+Begin correlation plot... 
 Would you like to (continue) visualize your data? (y/n) n
 Data visualization is skipped. 
 ```
-![alt_text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/visualization.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/corr.png)
 
 ### Principle Component Analysis:
 ```
