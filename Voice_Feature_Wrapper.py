@@ -2,6 +2,8 @@ from DigiPsych_API.Feature_Extract_API.opensmile import OpenSmile
 import os
 import pandas as pd
 from datetime import datetime
+from DigiPsych_API.Feature_Extract_API.librosa_features import librosa_featurize
+
 
 output_folder = './Output_Folder/'
 
@@ -36,6 +38,22 @@ def osmile(path):
     gemapsDF.to_csv(os.path.join(output_folder + 'Gemaps',gemaps_name))
     print("OpenSmile Features Successfully Extracted.")
 
+def librosa(path):
+    librosaDF = pd.DataFrame()
+    if 'Librosa' not in os.listdir(output_folder):
+        os.mkdir(output_folder + 'Librosa')
+        for audioFile in os.listdir(path):
+            if audioFile == '.DS_Store':
+                continue
+            librosa_features, librosa_labels = librosa_featurize(os.path.join(path, audioFile))
+            librosa_dict = dict(zip(librosa_labels, librosa_features))
+            librosaDF = librosaDF.append(librosa_dict, ignore_index=True)
+            librosaDF.insert(0, 'AudioFile', audioFile)
+            date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+            librosa_name = 'librosa_features_' + date + '.csv'
+            librosaDF.to_csv(os.path.join(output_folder + 'Librosa', librosa_name))
+            print("Librosa Features Successfully Extracted.")
+
 def checkpath(path):
     files = os.listdir(path)
     for fi in files:
@@ -48,6 +66,7 @@ def checkpath(path):
 
 def feature_suite(path):
     osmile(path)
+    librosa(path)
 
 
 
