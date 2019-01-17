@@ -41,8 +41,6 @@ def nltk_feats(path,bit):
     nltk_df.to_csv(file_name)
     print("NLTK Features Successfully Extracted")
 
-
-
 def spacy_features(path,bit):
     spacy_df = pd.DataFrame()
     if 'Language' not in os.listdir(output_folder):
@@ -84,6 +82,7 @@ def checkpath(path):
 def feature_suite(path,bit):
     nltk_feats(path,bit)
     spacy_features(path,bit)
+
 def main():
     if os.path.exists(output_folder) == False:
         os.mkdir(output_folder)
