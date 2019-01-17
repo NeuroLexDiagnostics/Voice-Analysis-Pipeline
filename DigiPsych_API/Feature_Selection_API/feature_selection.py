@@ -193,7 +193,7 @@ def RFEFeatSelect(x, y, classifier):
         plt.plot(range(1, len(rfe.grid_scores_) + 1), rfe.grid_scores_)
         plt.show()
         
-        return feature_selected
+        return pd.DataFrame({"Feature": feature_selected})
     except RuntimeError:
         print(sys.exc_info())
         return pd.DataFrame(columns=['Empty'])

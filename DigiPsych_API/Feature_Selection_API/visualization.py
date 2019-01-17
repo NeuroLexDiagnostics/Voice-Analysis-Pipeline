@@ -22,10 +22,8 @@ def pairGrid(df, features):
     for feature in features:
         if feature not in df.head():
             print("At least one of the features doesn't exist in the table. ")
-            return 
-    
+            return     
     sns.set(style="white")
-    plt.rcParams["axes.labelsize"] = 7
     partial = df.loc[:,features]
     g = sns.PairGrid(partial, diag_sharey=False)
     g.map_lower(sns.kdeplot, cmap="Blues_d")
