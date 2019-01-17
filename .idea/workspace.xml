@@ -2,12 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="027d3def-0e8d-41ec-b179-286d816d5505" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/test/test.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/transcripts/test copy.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/transcripts/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output_Folder/Avec/avec_features_2018-12-19-21-23-41.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output_Folder/Gemaps/gemaps_features_2018-12-19-21-23-41.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Voice_Feature_Wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Voice_Feature_Wrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/ling_complexity.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/COPYING" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/COPYING.LESSER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/MANIFEST.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/README.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/download_lt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language-check" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/backports/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/backports/subprocess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/console_mode.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/language_check/which.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/run_doctest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/test.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DigiPsych_API/lang_check/test_remote.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Output_Folder/Language/lingComplex_features_2019-01-16-23-44-59.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Output_Folder/Language/lingComplex_features_2019-01-16-23-57-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Output_Folder/Language/lingComplex_features_2019-01-17-00-07-39.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Output_Folder/Language/lingComplex_features_2019-01-17-00-11-51.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Language_Feature_Wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Language_Feature_Wrapper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smile.log" beforeDir="false" afterPath="$PROJECT_DIR$/smile.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/librosa_features.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3888">
+            <state relative-caret-position="443">
               <caret line="162" column="1" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
@@ -36,8 +60,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Language_Feature_Wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            <state relative-caret-position="120">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#75#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,7 +73,6 @@
         <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/nltk_featurize.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret lean-forward="true" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -58,7 +84,6 @@
         <entry file="file://$PROJECT_DIR$/Voice_Feature_Wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret lean-forward="true" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -332,16 +357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/librosa_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3888">
-          <caret line="162" column="1" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/opensmile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3264">
@@ -355,7 +370,6 @@
     <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/nltk_featurize.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret lean-forward="true" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -374,15 +388,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Language_Feature_Wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        <state relative-caret-position="120">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DigiPsych_API/Feature_Extract_API/librosa_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="162" column="1" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Voice_Feature_Wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret lean-forward="true" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>

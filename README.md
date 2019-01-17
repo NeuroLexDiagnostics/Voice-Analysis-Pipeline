@@ -9,6 +9,10 @@ Please make sure to have the following dependencies installed:
 - numpy
 - pandas
 - textblob
+- mlxtend
+- sklearn
+- seaborn
+- matplotlib
 
 ### Features Provided and Background Information:
 
@@ -67,7 +71,7 @@ python Language_Feature_Wrapper.py
     - 4.1 Standardized word entropy
     - 4.2 Suffix ratio
     - 4.3 Number ratio
-    - 4.4 Brunet’s index
+    - 4.4 Brunet’s index:https://www.csb.uncw.edu/csb/mscsis/complete/pdf/Habash%20-%20Capstone%20Paper.pdf
     - 4.5 Honore’s statistic
     - 4.6 Type-token ratio
 - Implement Command Line Usage -- Larry
