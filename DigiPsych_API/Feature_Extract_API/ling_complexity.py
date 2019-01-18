@@ -1,12 +1,10 @@
 import pandas as pd
 import math
 import os
-import enchant
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from DigiPsych_API.lang_check import language_check
 
-engDict = enchant.Dict("en_US")
 
 def removePeriods(wordList):
 	for each in range(len(wordList)):
@@ -19,7 +17,6 @@ def unintellWordRatio(transcript):
 	unintell = 0
 	for each in transcript:
 		if each == '': continue
-		if not engDict.check(each): unintell += 1
 		if each == '<unintelligible>': unintell += 1
 	return float(unintell)/float(len(transcript))
 
@@ -71,7 +68,7 @@ def suffixRatio(transcript):
 				word[each] = 1
 				count += 1
 	except:
-		pass
+		return 0
 	return float(suffixNumber)/float(count)
 
 def typetokenratio(transcript):
