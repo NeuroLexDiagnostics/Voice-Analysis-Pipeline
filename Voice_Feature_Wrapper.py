@@ -42,17 +42,20 @@ def librosa(path):
     librosaDF = pd.DataFrame()
     if 'Librosa' not in os.listdir(output_folder):
         os.mkdir(output_folder + 'Librosa')
-        for audioFile in os.listdir(path):
-            if audioFile == '.DS_Store':
-                continue
-            librosa_features, librosa_labels = librosa_featurize(os.path.join(path, audioFile))
-            librosa_dict = dict(zip(librosa_labels, librosa_features))
-            librosaDF = librosaDF.append(librosa_dict, ignore_index=True)
-            librosaDF.insert(0, 'AudioFile', audioFile)
-            date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-            librosa_name = 'librosa_features_' + date + '.csv'
-            librosaDF.to_csv(os.path.join(output_folder + 'Librosa', librosa_name))
-            print("Librosa Features Successfully Extracted.")
+    for audioFile in os.listdir(path):
+        if audioFile == '.DS_Store':
+            continue
+        librosa_features, librosa_labels = librosa_featurize(os.path.join(path, audioFile))
+        librosa_dict = dict(zip(librosa_labels, librosa_features))
+        librosa_dict['AudioFile'] = audioFile
+        librosaDF = librosaDF.append(librosa_dict, ignore_index=True)
+    aFile = librosaDF['AudioFile']
+    librosaDF.drop(['AudioFile'],axis=1,inplace=True)
+    librosaDF.insert(0, 'AudioFile', aFile)
+    date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    librosa_name = 'librosa_features_' + date + '.csv'
+    librosaDF.to_csv(os.path.join(output_folder + 'Librosa', librosa_name))
+    print("Librosa Features Successfully Extracted.")
 
 def checkpath(path):
     files = os.listdir(path)
@@ -65,7 +68,7 @@ def checkpath(path):
     return True
 
 def feature_suite(path):
-    osmile(path)
+    #osmile(path)
     librosa(path)
 
 

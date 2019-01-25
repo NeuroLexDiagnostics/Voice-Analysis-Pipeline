@@ -1,0 +1,20 @@
+Problem with Feature_Selection_API
+
+feel free to try this api and leave comments below the dot line 
+------------------------------------------------------------------
+
+
+
+
+1. lasso selectFromModel 
+- get empty sets (no features pass threshold)
+- only remains PHQ9_Score
+2. RFECV
+- RFECV learning curve plot don't have standard deviation shade
+3. data visualization
+- cannot handle large datasets (plot memory, size of figure)
+- can only plot part of dataset at once 
+4. efficiency
+- getBestK slow with advanced classifier (exhausive search?)
+5. overfitting, underfitting
+- heavy overfitting issue (potential reason: limitation of features, model?)
