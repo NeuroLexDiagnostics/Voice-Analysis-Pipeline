@@ -66,7 +66,7 @@ Begin correlation plot...
 Would you like to (continue) visualize your data? (y/n) n
 Data visualization is skipped. 
 ```
-![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/Data_Science_API/Feature_Selection_API/graphs/corr.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/corr.png)
 
 ### Feature Transformation:
 1. Principle Component Analysis
