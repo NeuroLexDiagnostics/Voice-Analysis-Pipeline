@@ -18,6 +18,7 @@ from sklearn.linear_model import LassoCV
 import preprocessing
 import visualization
 import feature_selection
+import feature_transformation
 import evaluate_model
 
 # prompt for encoding target class
@@ -123,8 +124,102 @@ def visualPrompt(x_standard, y):
             else:
                 print("Please provide a number 1, 2, 3, or 4 to visualize your data.")
         else:
-            print("Data visualization is skipped. ")
+            print("Data visualization is terminated. ")
             break
+
+# prompt for feature transformation
+def transformationPrompt(x_standard, y):
+    answer = input("Would you like to perform feature transformation? (y/n) ")
+    if answer == 'y':
+        # low variance filter
+        remove = input("Do you want to remove features with no variance? (y/n) ")
+        if remove == "y":
+            x_standard = feature_transformation.low_var_filter(x_standard)
+        else:
+            print("Low variance filter is skipped. ")
+        
+        # high correlation filter
+        remove = input("Do you want to remove highly correlated features? (y/n) ")
+        if remove == "y":
+            diff = input("The default threshold is 0.8. Do you want to use a different value? (y/n): ")
+            if diff == "y":
+                while True:
+                    threshold = input("Please provide a threshold for correlation (0-1): ")
+                    try:
+                        threshold = float(threshold)
+                    except ValueError:
+                        print("The input you provide is not a float. Please try again: ")
+                    else:
+                        x_standard = feature_transformation.high_corr_filter(x_standard, threshold)
+                        break
+            else:        
+                x_standard = feature_transformation.high_corr_filter(x_standard)
+        else:
+            print("High correlation filter is skipped. ") 
+            
+        while True:
+            answer = input("Would you like to (continue) transform your data? (y/n) ")
+            if answer == 'y':
+                print("Here is a list of method to choose: ")
+                print("1. Principle Component Analysis ")
+                print("2. Independent Component Analysis ")
+                print("3. Factor Analysis ")
+                
+                method = input("Please choose a method by number 1 - 3: ")
+                if method == "1":
+                    exhausive = input("Do you want to exhaustively test the best n_component? (y/n): ")
+                    if exhausive == "y":
+                        feature_transformation.get_best_N(x_standard, y, "PCA")
+                    feature_transformation.pca_plot(x_standard)
+                elif method == "2":
+                    exhausive = input("Do you want to exhaustively test the best n_component? (y/n): ")
+                    if exhausive == "y":
+                        feature_transformation.get_best_N(x_standard, y, "ICA")
+                    # independent component analysis
+                    while True:
+                        comp_value = input("Please provide a component value: ")
+                        try:
+                            comp_value = int(comp_value)
+                        except ValueError:
+                            print("The input you provide is not an integer. Please try again: ")
+                        else:
+                            x_standard = feature_transformation.ica_plot(x_standard, comp_value)
+                            break
+                elif method == "3":
+                    diff = input("The n_component is 3. Do you want to use a different value? (y/n): ")
+                    if diff == "y":
+                        while True:
+                            group_value = input("Please provide a positive integer as n_component: ")
+                            try:
+                                group_value = int(group_value)
+                            except ValueError:
+                                print("The input you provide is not an integer. Please try again: ")
+                            else:
+                                x_standard = feature_transformation.factor_analysis(x_standard, group_value)
+                                break
+                    else:        
+                        x_standard = feature_transformation.factor_analysis(x_standard)
+                else:
+                    print("Please provide a number 1, 2, or 3 to transform your data.")
+            else:
+                # rename features
+                num_feature = x_standard.shape[1]
+                col_name = list(range(0, num_feature))
+                col_name = ["col_" + str(x) for x in col_name]
+                x_standard = pd.DataFrame(x_standard, columns=col_name)
+                
+                # print information
+                print("Current number of features: " + str(num_feature))
+                answer = input("Do you want to see the dataset? (y/n) ")
+                if answer == "y":
+                    print("Remaining features: \n" + str(x_standard))
+                    
+                print("Feature transformation is terminated. ")
+                break    
+    else:
+        print("Feature transformation is skipped. ")
+        
+    return x_standard, y
 
 # prompt for model evaluation
 def evalModelPrompt(x_train, x_test, y_train, y_test, x_standard, y, classifier, name):
@@ -245,18 +340,15 @@ def main():
     # visualize data
     visualPrompt(x_standard, y)
     
-    answer = input("Would you like to perform principle component analysis? (y/n) ")
-    if answer == 'y':
-        print("Begin PCA... ")
-        num_comp = feature_selection.pcaPlot(x_standard)
-        print("Suggested number of components by PCA with explained variance >= 0.9 is: " + str(num_comp))    
-    else:
-        print("PCA is skipped. ")
+    # prompt for feature transformation
+    x_standard, y = transformationPrompt(x_standard, y)
+    x_standard = preprocessing.standardization(x_standard)
     
     answer = input("Would you like to perform feature selection? (y/n) ")
     if answer == 'y':
-        # split train and test datasets
+        # split dataset to train and test
         x_train, x_test, y_train, y_test = train_test_split(x_standard, y, test_size=0.3, random_state=0)
+        
         # find optimal classifier
         print("Begin to test classifiers... ")
         classifier1, name1, classifier2, name2 = feature_selection.optimalClassifier(x_train, x_test, y_train, y_test)
