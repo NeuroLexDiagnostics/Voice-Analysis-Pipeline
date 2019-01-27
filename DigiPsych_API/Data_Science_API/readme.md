@@ -50,7 +50,7 @@ Here is a list of method to choose:
 Please choose a method by number 1 - 4: 4
 Begin heap map plot... 
 ```
-![alt_text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/visualization.png)
+![alt_text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/visualization.png)
 
 Correlation plot
 ```
@@ -66,7 +66,7 @@ Begin correlation plot...
 Would you like to (continue) visualize your data? (y/n) n
 Data visualization is skipped. 
 ```
-![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/corr.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/Data_Science_API/Feature_Selection_API/graphs/corr.png)
 
 ### Feature Transformation:
 1. Principle Component Analysis
@@ -192,7 +192,7 @@ The selected features are:
 Do you want to find the best number of feature using Random_Forest? (y/n) n
 Skip for Random_Forest.
 ```
-![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/classifier.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/classifier.png)
 
 ### Feature Selection
 1. univariance feature selection (univariance)
@@ -217,7 +217,7 @@ Number of Features: 3
 6  F0semitoneFrom27.5Hz_sma3nz_percentile80.0  1.185713
 End of Operation.
 ```
-![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/uni.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/uni.png)
 
 Optimal_classifier (k neareast neighbors - will be skipped, random forest):
 ```
@@ -236,6 +236,6 @@ Number of Features: 5
 1  F0semitoneFrom27.5Hz_sma3nz_pctlrange0-2
 End of Operation.
 ```
-![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Feature_Selection_API/graphs/optimal.png)
+![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/optimal.png)
 
 
