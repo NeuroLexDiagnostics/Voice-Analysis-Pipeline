@@ -26,6 +26,7 @@ def encodePrompt(y, target_name):
     while True:
         try:
             pd.to_numeric(y)
+            return y
             break
         except ValueError:
             print("Your target class is not numerical. Transforming it to categorical...")
