@@ -1,4 +1,5 @@
 import warnings
+from matplotlib.streamplot import InvalidIndexError
 warnings.filterwarnings("ignore")
 
 # basic package
@@ -34,17 +35,21 @@ def pairGrid(df, features):
 # plot every feature vs. target class 
 # color-code every class/label in target class
 def violinPlot(x, y):
-    size = len(x.columns)
-    sns.set(style="whitegrid")
-    data = pd.concat([y,x],axis=1)
-    data = pd.melt(data,id_vars="Severity",
-                    var_name="features",
-                    value_name="value")
-    plt.figure(figsize=(size,size))
-    sns.swarmplot(x="features", y="value", hue="Severity", data=data)
-
-    plt.xticks(rotation=90)
-    plt.show()
+    try:
+        name = list(y)[0]
+        size = len(x.columns)
+        sns.set(style="whitegrid")
+        data = pd.concat([y,x],axis=1)
+        data = pd.melt(data,id_vars=name,
+                        var_name="features",
+                        value_name="value")
+        plt.figure(figsize=(size,size))
+        sns.swarmplot(x="features", y="value", hue=name, data=data)
+    
+        plt.xticks(rotation=90)
+        plt.show()
+    except InvalidIndexError:
+        print("There are repeat features. Please try again. ")
 
 # heapMap color-code correlation between every pair of features
 def heapMap(df):
