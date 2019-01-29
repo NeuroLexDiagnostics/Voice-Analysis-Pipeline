@@ -36,7 +36,7 @@ https://spacy.io/api/
 
 Please Make sure you are executing the pipeline in a Python3 Environment and have the following modules/packages installed:
 
-pip install pandas scikit-learn
+pip install pandas scikit-learn textblob librosa nltk spacy librosa seaborn matplotlib speech_recognition
 
 
 ### How To Use:
@@ -47,6 +47,7 @@ python Voice_Feature_Wrapper.py
 ```
 - Provides AVEC2013 Features
 - Provides GeMAPS Features
+- Provides Librosa Features
 
 ##### Language Feature Wrapper:
 ```
@@ -54,9 +55,9 @@ python Language_Feature_Wrapper.py
 ```
 - Provides SPACY Features
 - Provides NLTK Features
+- Provides Linguistic Features of Complexity
 
 ### Pipeline Backlog:
-- Implement Librosa Spectral Features -- Ali
 - Implement Prosodic:Voice Activity Detection Features -- Abbad
     - 5.1 Response time
     - 5.2 Response length
@@ -67,18 +68,8 @@ python Language_Feature_Wrapper.py
     - 5.7 Silence rate
     - 5.8 Cont. speech rate
     - 5.9 Avg. cont. word count
-- Implement Linguistic: Complexity Features
-    - 4.1 Standardized word entropy
-    - 4.2 Suffix ratio
-    - 4.3 Number ratio
-    - 4.4 Brunet’s index:https://www.csb.uncw.edu/csb/mscsis/complete/pdf/Habash%20-%20Capstone%20Paper.pdf
-    - 4.5 Honore’s statistic
-    - 4.6 Type-token ratio
-- Implement Command Line Usage -- Larry
-- Configure "__init__.py" to 'enable' -- Abbad
+
 - Feature Selection Implementation -- Sherry
-    - AutoML Capability
-    - MRMR
 - Implement Semantic Coherence: https://github.com/facuzeta/coherence
 
 ### Credits:
