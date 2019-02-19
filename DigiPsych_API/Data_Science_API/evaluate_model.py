@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 
 from sklearn.model_selection import learning_curve
 
-# credit: https://www.kaggle.com/pmarcelino/data-analysis-and-feature-extraction-with-python
-
 # Plot learning curve
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
                         n_jobs=1, train_sizes=np.linspace(.1, 1.0, 5)):

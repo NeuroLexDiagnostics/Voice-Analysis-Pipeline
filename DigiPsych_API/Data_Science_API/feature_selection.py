@@ -27,6 +27,7 @@ from sklearn.feature_selection import VarianceThreshold
 from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
 from sklearn.decomposition import PCA
 
+# classification package
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -36,6 +37,16 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import svm
 from sklearn.svm import SVC
+
+# regression package
+from sklearn import metrics
+from sklearn.neural_network import MLPRegressor
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import Perceptron
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import cross_val_predict
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 
 # plot cumulative explained variance vs. number of components
 def pcaPlot(df):
@@ -51,6 +62,107 @@ def pcaPlot(df):
 #     print(explained_var)
     # return number of components with explained variance >= 90%
     return bisect.bisect_left(explained_var, 0.9)
+
+def optimalRegression(x_train, x_test, y_train, y_test):
+
+    # metrics 
+    mean_absolute_errors=[]
+
+    # regression model
+    models = [linear_model.LinearRegression(),
+              linear_model.Ridge(fit_intercept=True, alpha=0.0, random_state=0, normalize=True),
+              linear_model.Lasso(alpha = 0.1),
+              linear_model.ElasticNet(),
+              linear_model.Lars(n_nonzero_coefs=1),
+              linear_model.LassoLars(),
+              linear_model.OrthogonalMatchingPursuit(),
+              linear_model.LogisticRegression(C=1.0, penalty='l1', tol=1e-6),
+              linear_model.SGDRegressor(),
+              MLPRegressor(solver='lbfgs'),
+              linear_model.PassiveAggressiveRegressor(random_state=0),
+              linear_model.RANSACRegressor(),
+              linear_model.TheilSenRegressor(random_state=42),
+              linear_model.HuberRegressor(fit_intercept=True, alpha=0.0, max_iter=100),
+              Pipeline([
+                        ('poly', PolynomialFeatures(degree=5, include_bias=False)),
+                        ('linreg', linear_model.LinearRegression(normalize=True))
+                        ])]
+    
+    # model name
+    names = ['Linear_Regression',
+             'Ridge_Regression',
+             'Lasso',
+             'Elastic_Net',
+             'Least_Angle_Regression',
+             'LARS_Lasso',
+             'Orthogonal_Matching_Pursuit',
+             'Logistic_Regression',
+             'Stochastic_Gradient_Descent',
+             'Perceptron_Algorithms',
+             'Passive-aggressive_Algorithms',
+             'RANSAC',
+             'Theil_SEN',
+             'Huber_Regression',
+             'Polynomial_Regression']
+    
+    for model in models:
+        try:
+            model.fit(x_train, y_train)
+            predictions = cross_val_predict(model, x_test, y_test, cv=5)
+            mean_absolute_errors.append(metrics.mean_absolute_error(y_test,predictions))
+        except:
+            mean_absolute_errors.append('n/a')
+        
+
+    df = pd.DataFrame({'Model_reference': models,
+                       'Model_name': names,
+                       'Mean_absolute_err': mean_absolute_errors})
+    
+    df.sort_values(by='Mean_absolute_err', ascending=True, inplace=True)
+    df = df.reset_index(drop=True)
+    
+    print(df[['Model_name','Mean_absolute_err']])  
+    print("Optimal model is " + str(df['Model_name'][0]) + " with error " + str(df['Mean_absolute_err'][0]))
+    print("Second Optimal model is " + str(df['Model_name'][1]) + " with error " + str(df['Mean_absolute_err'][1]))
+  
+    name1 = str(df['Model_name'][0])
+    name2 = str(df['Model_name'][1])
+    model1 = None
+    model2 = None
+    
+    for model,name in zip(models,names):
+        if name == str(df['Model_name'][0]):
+            model1 = model
+        elif name == str(df['Model_name'][1]):
+            model2 = model
+    
+    return model1, name1, model2, name2
+
+# helper function to update model score metric
+def update_list(y_test, predictions, explained_variances, mean_absolute_errors, mean_squared_errors, mean_squared_log_errors, median_absolute_errors, r2_scores):
+    try:
+        explained_variances.append(metrics.explained_variance_score(y_test,predictions))
+    except:
+        explained_variances.append('n/a')
+    try:
+        mean_absolute_errors.append(metrics.mean_absolute_error(y_test,predictions))
+    except:
+        mean_squared_errors.append('n/a')
+    try:
+        mean_squared_log_errors.append(metrics.mean_squared_log_error(y_test,predictions))
+    except:
+        mean_squared_log_errors.append('n/a')
+    try:
+        median_absolute_errors.append(metrics.median_absolute_error(y_test,predictions))
+    except:
+        median_absolute_errors.append('n/a')
+    try:
+        r2_scores.append(metrics.r2_score(y_test,predictions))
+    except:
+        r2_scores.append('n/a')
+
+    return explained_variances, mean_absolute_errors, mean_squared_errors, mean_squared_log_errors, median_absolute_errors, r2_scores
+
 
 # find best classifier by score
 def optimalClassifier(x_train, x_test, y_train, y_test):
