@@ -56,21 +56,7 @@ python Language_Feature_Wrapper.py
 - Provides SPACY Features
 - Provides NLTK Features
 - Provides Linguistic Features of Complexity
-
-### Pipeline Backlog:
-- Implement Prosodic:Voice Activity Detection Features -- Abbad
-    - 5.1 Response time
-    - 5.2 Response length
-    - 5.3 Silence ratio
-    - 5.4 Silence to utt. ratio
-    - 5.5 Long silence ratio
-    - 5.6 Avg. silence count
-    - 5.7 Silence rate
-    - 5.8 Cont. speech rate
-    - 5.9 Avg. cont. word count
-
-- Feature Selection Implementation -- Sherry
-- Implement Semantic Coherence: https://github.com/facuzeta/coherence
+- Provides Semantic Coherence Features
 
 ### Credits:
 - audEERING for OpenSmile Capability: https://www.audeering.com/
@@ -78,3 +64,6 @@ python Language_Feature_Wrapper.py
     - https://github.com/jim-schwoebel/voicebook
 - Semantic Coherence:
     - https://www.nature.com/articles/npjschz201530.pdf
+
+#### Misc Information:
+- Validation of Linguistic Features may be possible thru this https://corpus.byu.edu/coca/
