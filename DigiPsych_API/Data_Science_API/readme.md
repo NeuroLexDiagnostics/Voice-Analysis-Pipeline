@@ -72,7 +72,10 @@ Data visualization is skipped.
 1. Principle Component Analysis
 2. Independent Component Analysis
 3. Factor Analysis
+4. Low Variance Filter
+5. High Correlation Filter
 
+Low Variance and High Correlation Filter:
 ```
 Would you like to perform feature transformation? (y/n) y
 Do you want to remove features with no variance? (y/n) y
@@ -150,10 +153,35 @@ Remaining features:
 Feature transformation is terminated.
 ```
 
-### Test Classifier:
-Low variance filter and high correlation filter:
+### Test Regression Model:
 ```
 Would you like to perform feature selection? (y/n) y
+Would you like to perform classification or regression? (c/r) r
+Begin to test regression models... 
+                       Model_name  Mean_absolute_err
+0                     Elastic_Net       1.072858e+00
+1                      LARS_Lasso       1.072858e+00
+2             Logistic_Regression       1.078652e+00
+3                           Lasso       1.087639e+00
+4          Least_Angle_Regression       1.089440e+00
+5                Huber_Regression       1.122272e+00
+6     Orthogonal_Matching_Pursuit       1.124653e+00
+7               Linear_Regression       1.134434e+00
+8                Ridge_Regression       1.134443e+00
+9                       Theil_SEN       1.178753e+00
+10                         RANSAC       1.543389e+00
+11  Passive-aggressive_Algorithms       1.724382e+00
+12    Stochastic_Gradient_Descent       1.798127e+00
+13          Perceptron_Algorithms       2.162853e+00
+14          Polynomial_Regression       4.951144e+09
+Optimal model is Elastic_Net with error 1.0728578713228183
+Second Optimal model is LARS_Lasso with error 1.0728578713228183
+```
+
+### Test Classifier:
+```
+Would you like to perform feature selection? (y/n) y
+Would you like to perform classification or regression? (c/r) c
 Begin to test classifiers... 
        Classifier_name     Score
 0  K_Nearest_Neighbors  0.498633
