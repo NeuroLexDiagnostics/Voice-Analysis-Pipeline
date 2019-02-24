@@ -63,6 +63,27 @@ def pcaPlot(df):
     # return number of components with explained variance >= 90%
     return bisect.bisect_left(explained_var, 0.9)
 
+# compute feature relevance(correlation) to target class 
+# and redundancy with other features
+# return a table with all features ranked by correlation from high to low
+# and redundancy from low to high 
+
+# relevance formula: correlation with target class
+# redundancy formula: sum of absolute value of correlation with other features / (number of features - 1)
+def mrmr(x, y):
+    corr_matrix_abs = abs(x.corr())
+    lst = []
+    features = x.head()
+
+    corr = (x.astype(float)).corrwith(y.astype(float))
+        
+    depend = (corr_matrix_abs.sum(axis=1) - 1)/ (len(features) - 1)
+    lst = zip(features, corr, depend)
+    
+    lst = sorted(lst, key=lambda x: (x[1], -1 * abs(x[2])), reverse=True)
+    output = pd.DataFrame(lst, columns=['Feature', 'Correlation (absolute value high to low)', 'Dependency (low to high)'])
+    return output
+
 def optimalRegression(x_train, x_test, y_train, y_test):
 
     # metrics 
@@ -137,32 +158,6 @@ def optimalRegression(x_train, x_test, y_train, y_test):
             model2 = model
     
     return model1, name1, model2, name2
-
-# helper function to update model score metric
-def update_list(y_test, predictions, explained_variances, mean_absolute_errors, mean_squared_errors, mean_squared_log_errors, median_absolute_errors, r2_scores):
-    try:
-        explained_variances.append(metrics.explained_variance_score(y_test,predictions))
-    except:
-        explained_variances.append('n/a')
-    try:
-        mean_absolute_errors.append(metrics.mean_absolute_error(y_test,predictions))
-    except:
-        mean_squared_errors.append('n/a')
-    try:
-        mean_squared_log_errors.append(metrics.mean_squared_log_error(y_test,predictions))
-    except:
-        mean_squared_log_errors.append('n/a')
-    try:
-        median_absolute_errors.append(metrics.median_absolute_error(y_test,predictions))
-    except:
-        median_absolute_errors.append('n/a')
-    try:
-        r2_scores.append(metrics.r2_score(y_test,predictions))
-    except:
-        r2_scores.append('n/a')
-
-    return explained_variances, mean_absolute_errors, mean_squared_errors, mean_squared_log_errors, median_absolute_errors, r2_scores
-
 
 # find best classifier by score
 def optimalClassifier(x_train, x_test, y_train, y_test):
