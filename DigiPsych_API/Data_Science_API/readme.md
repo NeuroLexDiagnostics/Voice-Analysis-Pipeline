@@ -69,7 +69,7 @@ Data visualization is skipped.
 ![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/corr.png)
 
 ### Feature Transformation:
-1. Principle Component Analysis
+1. Principal Component Analysis
 2. Independent Component Analysis
 3. Factor Analysis
 4. Low Variance Filter
