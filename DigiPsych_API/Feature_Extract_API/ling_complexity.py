@@ -5,7 +5,6 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from DigiPsych_API.lang_check import language_check
 
-
 def removePeriods(wordList):
 	for each in range(len(wordList)):
 		if '.' in wordList[each]:
@@ -93,7 +92,8 @@ def lingComplexResult(path):
 	suffixRatio(inputTranscript), 
 	typetokenratio(inputTranscript)]
 	return output
-
+	
+'''
 def ling_complex(path, path2):
 	overall = []
 	fi = path
@@ -103,3 +103,4 @@ def ling_complex(path, path2):
 	file_name = '/Users/abbad/Desktop/Research/LinguisticFeatures/' + 'test' + '.csv'
 	lingComplex_df.to_csv(file_name)
 	return lingComplex_d
+'''

@@ -389,7 +389,7 @@ def main():
          
         # feature selection
         while True:
-            method = input("Please choose a feature selection method(RFE/univariance/lasso/optimal_classifier): ")
+            method = input("Please choose a feature selection method(RFE/univariance/lasso/optimal_classifier/MRMR): ")
             if method == 'RFE':
                 print("Using " + name1)
                 RFEPrompt(x_train, y_train, x_standard, y, classifier1, name1)
@@ -409,8 +409,12 @@ def main():
                 print("Using " + name2)
                 modelPrompt(x_train, y_train, x_standard, y, classifier2, name2)
                 break
+            elif method == 'MRMR':
+                result = feature_selection.mrmr(x_standard, y)
+                print(result)
+                break
             else:
-                print("The method you provide is not an option. Please choose among RFE, and univariance. ")
+                print("The method you provide is not an option. Please try again. ")
     else:
         print("Feature Selection is skipped. ")
         

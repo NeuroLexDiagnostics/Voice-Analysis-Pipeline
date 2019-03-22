@@ -69,7 +69,7 @@ Data visualization is skipped.
 ![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/corr.png)
 
 ### Feature Transformation:
-1. Principle Component Analysis
+1. Principal Component Analysis
 2. Independent Component Analysis
 3. Factor Analysis
 4. Low Variance Filter
@@ -223,7 +223,7 @@ Skip for Random_Forest.
 ![alt text](https://github.com/DrDongSi/Voice-Analysis-Pipeline/blob/master/DigiPsych_API/Data_Science_API/graphs/classifier.png)
 
 ### Feature Selection
-1. univariance feature selection (univariance)
+1. univariate feature selection (univariance)
 2. recursive feature elimination (RFE)
 3. lasso select from model (lasso)
 4. use top 2 classifiers above to select from model (optimal_classifer)
@@ -233,7 +233,7 @@ Notice:
 - K_Nearest_Neighbor cannot be used for method 2-4 and return an empty dataframe if prompted
 
 
-Univariance:
+univariate:
 ```
 Please choose a feature selection method(RFE/univariance/lasso/optimal_classifier): univariance
 Starting Univariance Feature Selection: 

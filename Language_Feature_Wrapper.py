@@ -1,6 +1,7 @@
 from DigiPsych_API.Feature_Extract_API.nltk_featurize import nltk_featurize
 from DigiPsych_API.Feature_Extract_API.spacy_features import spacy_featurize
 from DigiPsych_API.Feature_Extract_API import ling_complexity
+from DigiPsych_API.lang_check import lingCoherence
 import os
 import pandas as pd
 import numpy as np
@@ -79,20 +80,27 @@ def ling_complex(path, bit):
         id = df['ID']
         transcripts = df['transcript']
     else:
+        coherenceFeats = []
         transcript_files = os.listdir(path)
         indexes = []
         allData = []
         for fi in transcript_files:
             print("Parsing File: " , fi)
             file_path = os.path.join(path,fi)
+            coh = lingCoherence.coherenceMeasureOutput(file_path)
             currRow = ling_complexity.lingComplexResult(file_path)
+            currRow.append(coh)
             allData.append(currRow)
             indexes.append(fi)
-    lingComplex_df = pd.DataFrame(data = allData, columns = ['Transcript', 'Unintelligble', 'Number Ratio', 'Brunet Index', 'Honore Stat', 'Suffix Ratio', 'Type Token Ratio'])
+            coherenceFeats.append(coh)
+    lingComplex_df = pd.DataFrame(data = allData, columns = ['Transcript', 'Unintelligble', 'Number Ratio', 'Brunet Index', 'Honore Stat', 'Suffix Ratio', 'Type Token Ratio', 'Coherence Measure'])
+    cohDF = pd.DataFrame(data = coherenceFeats, columns = ['Transcript', 'Result'])
     date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     file_name = output_folder + 'Language/' + 'lingComplex_features_' + date + '.csv'
+    coh_file = output_folder + 'Language/' + 'coherence_features_' + date + '.csv'
     print("Data Outputed to following path:",file_name)
     lingComplex_df.to_csv(file_name)
+    cohDF.to_csv(coh_file)
     print("Linguistic Complexity Features Successfully Extracted")
 
 def checkpath(path):
