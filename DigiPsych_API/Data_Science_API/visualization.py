@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # get correlation plot between two variables
 def corrPlot(df, first, second):
     if first in df.head() and second in df.head():
-        sns.jointplot(df.loc[:,first], df.loc[:,second], kind="regg", color="#ce1414")   
+        sns.jointplot(df.loc[:,first], df.loc[:,second], kind="regg", color="#ce1414")
         plt.show()
     else:
         print("At least one of the features doesn't exist in the table. ")
@@ -23,7 +23,7 @@ def pairGrid(df, features):
     for feature in features:
         if feature not in df.head():
             print("At least one of the features doesn't exist in the table. ")
-            return     
+            return
     sns.set(style="white")
     partial = df.loc[:,features]
     g = sns.PairGrid(partial, diag_sharey=False)
@@ -32,20 +32,22 @@ def pairGrid(df, features):
     g.map_diag(sns.kdeplot, lw=len(features))
     plt.show()
 
-# plot every feature vs. target class 
+# plot every feature vs. target class
 # color-code every class/label in target class
 def violinPlot(x, y):
     try:
-        name = list(y)[0]
+        name = y.name
         size = len(x.columns)
         sns.set(style="whitegrid")
         data = pd.concat([y,x],axis=1)
+        pd.set_option('display.max_columns', 500)
         data = pd.melt(data,id_vars=name,
                         var_name="features",
                         value_name="value")
+        print(data)
         plt.figure(figsize=(size,size))
         sns.swarmplot(x="features", y="value", hue=name, data=data)
-    
+
         plt.xticks(rotation=90)
         plt.show()
     except InvalidIndexError:

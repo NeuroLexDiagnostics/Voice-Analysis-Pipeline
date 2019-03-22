@@ -69,7 +69,7 @@ def checkpath(path):
 
 def feature_suite(path):
     osmile(path)
-    librosa(path)
+    #librosa(path)
 
 
 
