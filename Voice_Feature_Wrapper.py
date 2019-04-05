@@ -4,38 +4,42 @@ import pandas as pd
 from datetime import datetime
 from DigiPsych_API.Feature_Extract_API.librosa_features import librosa_featurize
 
-
 output_folder = './Output_Folder/'
 
-def osmile(path):
+def osmile(path, optionsPassed):
     osm = OpenSmile()
-    avecDF = pd.DataFrame()
-    gemapsDF =pd.DataFrame()
-    if 'Avec' not in os.listdir(output_folder):
-        os.mkdir(output_folder + 'Avec')
-    if 'Gemaps' not in os.listdir(output_folder):
-        os.mkdir(output_folder + 'Gemaps')
-    for audioFile in os.listdir(path):
-        if audioFile == '.DS_Store':
-            continue
-        avec_features, avec_labels = osm.getAvec(os.path.join(path,audioFile))
-        gemaps_features, gemaps_labels = osm.getGemaps(os.path.join(path,audioFile))
-        avec_dict = dict(zip(avec_labels,avec_features))
-        gemaps_dict = dict(zip(gemaps_labels,gemaps_features))
-        avecDF = avecDF.append(avec_dict,ignore_index=True)
-        gemapsDF = gemapsDF.append(gemaps_dict,ignore_index=True)
-    a_name = avecDF['name']
-    g_name = gemapsDF['name']
-    avecDF.drop(['name'],axis=1)
-    gemapsDF.drop(['name'],axis=1)
-    avecDF.insert(0,'AudioFile',a_name)
-    gemapsDF.insert(0,'AudioFile',g_name)
-    date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-    avec_name = 'avec_features_' + date + '.csv'
-    gemaps_name = 'gemaps_features_' + date + '.csv'
-    gemapsDF.drop(['class'],axis=1)
-    avecDF.to_csv(os.path.join(output_folder + 'Avec',avec_name))
-    gemapsDF.to_csv(os.path.join(output_folder + 'Gemaps',gemaps_name))
+    if 'avec' in optionsPassed:
+        avecDF = pd.DataFrame()
+        if 'Avec' not in os.listdir(output_folder):
+            os.mkdir(output_folder + 'Avec')
+        for audioFile in os.listdir(path):
+            if audioFile == '.DS_Store':
+                continue
+            avec_features, avec_labels = osm.getAvec(os.path.join(path,audioFile))
+            avec_dict = dict(zip(avec_labels,avec_features))
+            avecDF = avecDF.append(avec_dict,ignore_index=True)
+        a_name = avecDF['name']
+        avecDF.drop(['name'],axis=1)
+        avecDF.insert(0,'AudioFile',a_name)
+        avec_name = 'avec_features_' + date + '.csv'
+        avecDF.to_csv(os.path.join(output_folder + 'Avec',avec_name))
+    if 'gemaps' in optionsPassed:
+        gemapsDF = pd.DataFrame()
+        if 'Gemaps' not in os.listdir(output_folder):
+            os.mkdir(output_folder + 'Gemaps')
+        for audioFile in os.listdir(path):
+            if audioFile == '.DS_Store':
+                continue
+            gemaps_features, gemaps_labels = osm.getGemaps(os.path.join(path,audioFile))
+            gemaps_dict = dict(zip(gemaps_labels,gemaps_features))
+            gemapsDF = gemapsDF.append(gemaps_dict,ignore_index=True)
+        g_name = gemapsDF['name']
+        gemapsDF.drop(['name'],axis=1)
+        gemapsDF.insert(0,'AudioFile',g_name)
+        date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        gemaps_name = 'gemaps_features_' + date + '.csv'
+        gemapsDF.drop(['class'],axis=1)
+        gemapsDF.to_csv(os.path.join(output_folder + 'Gemaps',gemaps_name))
     print("OpenSmile Features Successfully Extracted.")
 
 def librosa(path):
@@ -67,11 +71,10 @@ def checkpath(path):
             return False
     return True
 
-def feature_suite(path):
-    osmile(path)
-    #librosa(path)
-
-
+def feature_suite(path, optionsSelected):
+    osmile(path, optionsSelected)
+    if 'librosa' in optionsSelected: 
+        librosa(path)
 
 def main():
     if os.path.exists(output_folder) == False:

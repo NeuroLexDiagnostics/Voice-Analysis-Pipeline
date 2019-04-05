@@ -113,11 +113,18 @@ def checkpath(path):
             return False
     return True
 
+def feature_suite_selected(path,bit, options):
+    if 'nltk' in options:
+        nltk_feats(path,bit)
+    if 'spacy' in options:
+        spacy_features(path,bit)
+    if 'ling' in options:
+        ling_complex(path, bit)
+
 def feature_suite(path,bit):
     nltk_feats(path,bit)
     spacy_features(path,bit)
     ling_complex(path, bit)
-
 
 def main():
     if os.path.exists(output_folder) == False:
