@@ -65,6 +65,6 @@ if __name__ == '__main__':
     group.add_argument("-a", "--audio", action='store', help='<Path to a folder of audio files')
     group.add_argument("-t", "--transcripts", action='store',
                        help='Path to a folder of transcript text files or a csv of transcripts')
-    group.add_argument('-l','--list', nargs='+', help='<Required> Set flag', required=True)
+    parser.add_argument('-l','--list', nargs='+', help='<Required> Set flag', required=True)
     args = parser.parse_args()
     main(args.audio,args.transcripts,args.list)
