@@ -1,6 +1,7 @@
 from DigiPsych_API.Feature_Extract_API.opensmile import OpenSmile
 import os
 import pandas as pd
+import sys
 from datetime import datetime
 from DigiPsych_API.Feature_Extract_API.librosa_features import librosa_featurize
 
@@ -72,9 +73,13 @@ def checkpath(path):
     return True
 
 def feature_suite(path, optionsSelected):
-    osmile(path, optionsSelected)
-    if 'librosa' in optionsSelected: 
+    if optionsSelected == 'all':
+        osmile(path,['avec','gemaps'])
         librosa(path)
+    else:
+        osmile(path, optionsSelected)
+        if 'librosa' in optionsSelected:
+            librosa(path)
 
 def main():
     if os.path.exists(output_folder) == False:

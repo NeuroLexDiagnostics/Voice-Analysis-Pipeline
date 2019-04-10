@@ -22,13 +22,16 @@ def main(audio,transcripts, options):
             print("Please provide a file of 16-bit PCM Wav Files as inputs.")
         optionPass = []
         if 'all' in options:
+            optionPass.append('all')
             Voice_Feature_Wrapper.feature_suite(audio_path, optionPass)
-        elif 'avec' in options:
-            optionPass.append('avec')
-        elif 'gemaps' in options:
-            optionPass.append('gemaps')
-        elif 'librosa' in options:
-            optionPass.append('librosa')
+        else:
+            if 'avec' in options:
+                optionPass.append('avec')
+            elif 'gemaps' in options:
+                optionPass.append('gemaps')
+            elif 'librosa' in options:
+                optionPass.append('librosa')
+            Voice_Feature_Wrapper.feature_suite(audio_path,optionPass)
     elif transcripts:
         print('If passing a csv of transcripts, please label the transcript column \'transcript\'')
         transcript_path = transcripts
