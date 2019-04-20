@@ -41,6 +41,11 @@ pip install pandas scikit-learn textblob librosa nltk spacy librosa seaborn matp
 
 ### How To Use:
 
+##### New Command Line Featurizing: 
+```
+python featurize.py -a <Enter Audio Folder> -l <gemaps> <avec> <librosa> <all>  #Extracting audio 
+python featurize.py -t <Enter Transcript Folder> -l <nltk> <spacy> <all> #Extracting transcript
+```
 ##### Voice Feature Wrapper:
 ```
 python Voice_Feature_Wrapper.py
