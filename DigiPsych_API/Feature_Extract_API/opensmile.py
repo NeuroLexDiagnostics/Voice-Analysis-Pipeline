@@ -62,6 +62,7 @@ class OpenSmile():
         '''
         Gets Gemaps Features for provided audio file
         '''
+        print(audioFile)
         if '\\' in audioFile:
             fi = audioFile.split('\\')
             outFile = self.exportGemaps + '/' + fi[-1][:-4] + '.arff'

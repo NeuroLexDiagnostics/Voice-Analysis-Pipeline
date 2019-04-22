@@ -22,6 +22,7 @@ def osmile(path, optionsPassed):
         a_name = avecDF['name']
         avecDF.drop(['name'],axis=1)
         avecDF.insert(0,'AudioFile',a_name)
+        date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         avec_name = 'avec_features_' + date + '.csv'
         avecDF.to_csv(os.path.join(output_folder + 'Avec',avec_name))
     if 'gemaps' in optionsPassed:
