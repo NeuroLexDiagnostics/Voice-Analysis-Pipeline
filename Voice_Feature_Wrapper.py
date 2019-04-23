@@ -74,7 +74,7 @@ def checkpath(path):
     return True
 
 def feature_suite(path, optionsSelected):
-    if optionsSelected == 'all':
+    if 'all' in optionsSelected:
         osmile(path,['avec','gemaps'])
         librosa(path)
     else:
