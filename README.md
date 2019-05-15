@@ -1,5 +1,9 @@
 # DigiPsych Voice Analysis Pipeline
 
+The DigiPsych Voice Analysis Pipeline was created to enable easy extraction of features for voice computing technologies. From the features extracted, users can model affective mood, neurodegenerative diseases, among a wide array of applications (ie: diagnosing colds, presence of caffeine, medication, etc.). The DigiPsych Voice Analysis Pipeline is the amalgamation of work performed by students in the UW DigiPsych Lab (http://www.rezahosseinighomi.com/)
+
+## Usage
+
 In order to utilize the Voice Analysis Pipeline, please make sure you are in a
 Python3 Environment.
 
