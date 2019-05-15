@@ -15,6 +15,7 @@ Please make sure to have the following dependencies installed:
 - matplotlib
 
 ### Features Provided and Background Information:
+For additional information, please refer to the wiki (https://github.com/larryzhang95/Voice-Analysis-Pipeline/wiki)
 
 ##### Gemaps:
 Gemaps Features are explained at the following link:
@@ -70,5 +71,7 @@ python Language_Feature_Wrapper.py
 - Semantic Coherence:
     - https://www.nature.com/articles/npjschz201530.pdf
 
-#### Misc Information:
-- Validation of Linguistic Features may be possible thru this https://corpus.byu.edu/coca/
+#### Acknowledgements:
+We would like to thank Neurolex Diagnostics for assisting in developing the basis for this work. 
+
+We also have an associated paper with this pipeline submitted to Interspeech 2019, and plan to continue adding features. If you would like to request a feature to be added, please file an issue, and corresponding papers/sources which our collaborators and students may be able to implement
