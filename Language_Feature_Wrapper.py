@@ -103,6 +103,29 @@ def ling_complex(path, bit):
     cohDF.to_csv(coh_file)
     print("Linguistic Complexity Features Successfully Extracted")
 
+def coherence_feats(path,bit):
+    if 'Language' not in os.listdir(output_folder):
+        os.mkdir(output_folder + 'Language')
+    if bit == 1:
+        #Provides path to a csv file containing transcripts
+        df = pd.read_csv(path)
+        id = df['ID']
+        transcripts = df['transcript']
+    else:
+        coherenceFeats = []
+        transcript_files = os.listdir(path)
+        for fi in transcript_files:
+            print("Parsing File: " , fi)
+            file_path = os.path.join(path,fi)
+            coh = lingCoherence.coherenceMeasureOutput(file_path)
+            coherenceFeats.append(coh)
+        cohDF = pd.DataFrame(data = coherenceFeats)
+        date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        coh_file = output_folder + 'Language/' + 'coherence_features_' + date + '.csv'
+        print("Data Outputed to following path:",coh_file)
+        cohDF.to_csv(coh_file)
+        print("Semantic Coherence Features Successfully Extracted")
+
 def checkpath(path):
     files = os.listdir(path)
     for fi in files:
@@ -120,11 +143,14 @@ def feature_suite_selected(path,bit, options):
         spacy_features(path,bit)
     if 'ling' in options:
         ling_complex(path, bit)
+    if 'coh' in options:
+        coherence_feats(path,bit)
 
 def feature_suite(path,bit):
     nltk_feats(path,bit)
     spacy_features(path,bit)
     ling_complex(path, bit)
+    coherence_feats(path,bit)
 
 def main():
     if os.path.exists(output_folder) == False:

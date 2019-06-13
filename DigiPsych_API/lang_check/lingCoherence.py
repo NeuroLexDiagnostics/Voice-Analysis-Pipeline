@@ -1,6 +1,8 @@
 from DigiPsych_API.lang_check.coherence_master import coherence
 import os
 import collections
+import numpy as np
+import sys
 
 def flatten(d, parent_key='', sep='_'):
     items = []
@@ -18,7 +20,12 @@ def coherenceMeasure(txt):
 	return res
 
 def coherenceMeasureOutput(path):
-	with open(path, encoding = "utf-8", errors='ignore') as word_list:
-		rawText = word_list.read()
-		inputTranscript = rawText.split(' ')
-	return [path, flatten(coherenceMeasure(rawText))]
+    with open(path, encoding = "utf-8", errors='ignore') as word_list:
+        rawText = word_list.read()
+        inputTranscript = rawText.split(' ')
+    measure = flatten(coherenceMeasure(rawText))
+    for k,v in measure.items():
+        if isinstance(v,np.ndarray):
+            measure[k] = list(v)
+    measure['Transcript'] = path
+    return measure

@@ -57,6 +57,8 @@ def main(audio,transcripts, options):
                 langOptions.append('spacy')
             if 'ling' in options:
                 langOptions.append('ling')
+            if 'coh' in options:
+                langOptions.append('coh')
             Language_Feature_Wrapper.feature_suite_selected(transcript_path, bit, langOptions)
     else:
         print('Please enter path of the files. Use help for more details')
